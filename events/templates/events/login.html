@@ -1,0 +1,37 @@
+{% extends 'events/layout.html' %}
+{% load bootstrap4 %}
+  {% bootstrap_css %}
+
+{% block title %}Login{% endblock %}
+{% block content %}
+<head>
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+</head>
+<body style="background-color:#333;">
+<div class="container">
+  <br><br>
+<div class="jumbotron">
+
+{% if user == None %}
+{% bootstrap_alert content %}
+{% bootstrap_alert "Your username and password didn't match." alert_type='error' %}
+{% endif %}
+  <h2>Login</h2>
+  <br>
+  <form method="POST" action ="{% url 'events:login' %}" >
+    <div class="form-group">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+    <button type="submit" class="btn btn-primary">Login</button>
+    {% endbuttons %}
+    <div class="card-footer text-muted text-left">
+    <a href= "{% url 'events:password_reset' %}">Forgot your password?</a>
+  </div>
+    <br>
+    <div class="g-recaptcha" data-sitekey="6Ld8E1cUAAAAAB4cNo2nDdgviRDvbcaPRPhfNyO1"></div>
+    <br>
+    </div>
+  </form>
+</div></div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'events/layout.html' %}
+{% load bootstrap4 %}
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+<head>
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+</head>
+<body style="background-color:#333;">
+<div class="container">
+	<br>
+<div class="jumbotron">
+  <h2>Sign up</h2>
+  <br>
+  <form method="POST">
+    <div class="form-group">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+<br>
+    <div class="g-recaptcha" data-sitekey="6Ld8E1cUAAAAAB4cNo2nDdgviRDvbcaPRPhfNyO1"></div>
+    <br>
+    {% buttons %}
+    <button type="submit" class="btn btn-primary">Sign up</button>
+    {% endbuttons %}
+    <div class="card-footer text-muted text-left">
+            Already have an account? <a href="{% url 'events:login' %}">Log in</a>
+          </div>
+    </div>
+  </form>
+</div></div>
+{% endblock %}

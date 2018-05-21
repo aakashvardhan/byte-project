@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load bootstrap4 %}
+{% load static %}
+
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="{% static 'events/js/anime.min.js' %}"></script>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet'>
+     </script>
+        <style>
+            .btn-primary {
+                background: #4285f4;
+                border: 1px solid #1266f1;
+                color: #ffffff;
+                font-family: 'Open Sans', sans-serif;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: 0.23px;
+                padding: 12px 32px;
+                text-align: center;
+                text-decoration: none;
+        </style>
+        <title>
+        {% block title %}
+        CrudMe
+        {% endblock %}
+        </title>
+    </head>
+    <body>
+        {% include 'events/includes/header.html' %}
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

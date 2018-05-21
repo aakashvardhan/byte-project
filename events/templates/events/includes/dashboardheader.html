@@ -1,0 +1,50 @@
+{% load bootstrap4 %}
+<style>
+  .navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 0;
+    font-size: 12px;
+}
+
+.navbar-nav li a:hover {
+    color: #1abc9c !important;
+}
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<nav class="navbar fixed-top navbar-inverse">
+  <div class="container">
+    {% if user.is_authenticated %}
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'events:index' %}">Dashboard</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-menu">
+
+    <ul class="nav navbar-nav navbar-right">
+<li><a href="{% url 'events:my_events' %}"><span class="glyphicon glyphicon-th-list"></span> Schedule</a></li>
+<li><a href="{% url 'events:event_list' %}"><span class="glyphicon glyphicon-th-list"></span> My Events</a></li>
+<li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"> {{ user.first_name }}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'events:change_password' %}"><span class="glyphicon glyphicon-cog"></span> Change Password</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'events:logout' %}"><span class="glyphicon glyphicon-home" >Logout</a>
+        </div>
+      </li>
+    </ul>
+    </div>
+  
+          {% else %}
+<h3> You are not logged in </h3>
+{% endif %}<!--/.nav-collapse -->
+  </div>
+</nav>

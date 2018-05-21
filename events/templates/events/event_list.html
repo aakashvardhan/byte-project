@@ -13,10 +13,10 @@
       </div>
     </div>
   <br><br>
+  <div class="jumbotron">
   <table class="table" id="book-table">
     <thead>
       <tr>
-        <th>#</th>
         <th>Title</th>
         <th>Date</th>
         <th>Time</th>
@@ -27,7 +27,6 @@
     <tbody>
       {% for event in events_list %}
         <tr>
-          <td>{{ event.id }}</td>
           <td>{{ event.title }}</td>
           <td>{{ event.day }}</td>
           <td>{{ event.start_time }}</td>
@@ -45,10 +44,12 @@
         </tr>
       {% empty %}
         <tr>
-          <td colspan="7" class="text-center bg-warning">No Reminders</td>
+          <td colspan="7" class="text-center bg-warning">No Events</td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
+</div>
+</div>
 </div>
 {% endblock %}

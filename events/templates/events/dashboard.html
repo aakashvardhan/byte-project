@@ -50,11 +50,10 @@
 {% block content %}
 <div class="container">
   {% if user.is_authenticated %}
-<h3 align="right"> Welcome {{ user.first_name }}</h3>
+<h3 class="page-header" align="right"> Welcome {{ user.first_name }}!</h3>
 {% else %}
 <h3> You are not logged in </h3>
 {% endif %}
-  <br>
   <div class="jumbotron">
     {% if messages %}
         <ul class="messages">
@@ -65,9 +64,8 @@
     {% endif %}
   {% if latest_event_list %}
   <h2 class="display-4">Discover Events</h2>
-  <br><br>
-  {% if selected_event %}<h3>You have attending <strong>{{selected_event.title_text}}</strong></h3>{% endif %}
-  {% if error_message %}<p style="color:red"><strong>{{ error_message }}</strong></p>{% endif %}
+  <br>
+  
 
   <ol>
     {% for event in latest_event_list %}
@@ -82,7 +80,12 @@
           <input type="hidden" name="title_id" value="username" />
     <button type="submit" class="btn btn-warning">Attending</button>
   </form>
+  <br>
+  <form action="{% url 'events:not_attending' event.id %}" method="post">
+      {% csrf_token %}
+          <input type="hidden" name="title_id" value="username" />
     <button type="submit" class="btn btn-danger">Not Attending</button>
+  </form>
     <br><br>
     {% endfor %}
   </ol>

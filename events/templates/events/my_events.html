@@ -2,17 +2,16 @@
 {% block title %}My Events{% endblock %}
 
 {% block content %}
-{% if my_events %}
+
 <div class="container">
-	<br>
+	<h2 class="page-header">Events to Attend</h2>
 <div class="jumbotron">
 
-  <h2 class="display-4">Events to Attend</h2>
-  <br><br>
+{% if my_events %}
 
   <ol>
     {% for event in my_events %}
-    <li><h4>{{ event.title }}</h4></li>
+    <li><h4>Title: </h4><h5>{{ event.title }}</h5></li>
     <br>
     {% endfor %}
   </ol>

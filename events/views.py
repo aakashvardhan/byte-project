@@ -200,24 +200,53 @@ def attendance(request,title_id):
     username = request.user
     event = get_object_or_404(Schedule,pk=title_id)
     try:
-        selected_event = Attending.objects.create(username=username,title=event)
+
+        selected_event = Attending.objects.get(username=username,title=event.title)
+        print(selected_event)
+
     except Attending.DoesNotExist:
         selected_event = None
-
-    else:
-        if selected_event == None:
-            event.attending += 1
-            event.save()
-            u = EventAttendance(username=username,event_key=event_key)
-            u.save()
-            return render(request,'events/dashboard.html',{'event':event})
+        if NotAttending.objects.filter(username=username,title=event.title).exists():
+            messages.error(request, 'You are already not attending this event!')
+            return redirect('events:dashboard')
         else:
-            return render(request,'events/dashboard.html',{
-                'event':event,
-                'error_message':"You are already attending"
+            create_event = Attending.objects.create(username=username,title=event.title)
 
-                })
+    if selected_event == None:
+        event.attending += 1
+        print(event.attending)
+        event.save()
+        messages.success(request, 'You are attending this event!')
+        return redirect('events:dashboard')
+    else:
+        messages.error(request, 'You are already attending this event!')
+        return redirect('events:dashboard')
 
+@login_required(login_url='/login')
+def not_attending(request,title_id):
+    username = request.user
+    event = get_object_or_404(Schedule,pk=title_id)
+    try:
+
+        selected_event = NotAttending.objects.get(username=username,title=event.title)
+        print(selected_event)
+
+    except NotAttending.DoesNotExist:
+        selected_event = None
+        if Attending.objects.filter(username=username,title=event.title).exists():
+            messages.error(request, 'You are already attending this event!')
+            return redirect('events:dashboard')
+        else:
+            create_event = NotAttending.objects.create(username=username,title=event.title)
+
+    if selected_event == None:
+        event.not_attending += 1
+        event.save()
+        messages.success(request, 'Wish you came to the event!')
+        return redirect('events:dashboard')
+    else:
+        messages.error(request, 'You are already not attending this event!')
+        return redirect('events:dashboard')
 
 @login_required(login_url='/login')
 def my_events(request):

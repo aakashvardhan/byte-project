@@ -25,6 +25,7 @@ urlpatterns = [
     path('dashboard/myevents/edit/<int:title_id>', views.edit_event,name='edit_event'),
     path('dashboard/myevents/delete/<int:title_id>',views.delete_event,name='delete_event'),
     path('dashboard/attend/<int:title_id>/',views.attendance,name='attendance'),
+    path('dashboard/no_attend/<int:title_id>/',views.not_attending,name='not_attending'),
     path('dashboard/events_to_attend/',views.my_events,name='my_events'),
 
 

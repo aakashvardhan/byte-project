@@ -4,7 +4,7 @@
 {% block content %}
 
 <div class="container">
-	<h2 class="page-header">Events to Attend</h2>
+	<h2 class="page-header">Scheduled Events</h2>
 <div class="jumbotron">
 
 {% if my_events %}
@@ -13,6 +13,7 @@
     {% for event in my_events %}
     <li><h4>Title: </h4><h5>{{ event.title }}</h5></li>
     <br>
+    <a href="{% url 'events:attendees' event.title %}" class="btn btn-danger"> List of Attendees</a>
     {% endfor %}
   </ol>
 {% else %}

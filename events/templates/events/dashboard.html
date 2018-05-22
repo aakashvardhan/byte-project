@@ -78,7 +78,7 @@
     <form action="{% url 'events:attendance' event.id %}" method="post">
       {% csrf_token %}
           <input type="hidden" name="title_id" value="username" />
-    <button type="submit" class="btn btn-warning">Attending</button>
+    <button type="submit" class="btn btn-success">Attending</button>
   </form>
   <br>
   <form action="{% url 'events:not_attending' event.id %}" method="post">

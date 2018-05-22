@@ -1,0 +1,30 @@
+{% extends 'events/dashboardlayout.html' %}
+{% block title %}My Events{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<h2 class="page-header">List of Attendees</h2>
+<div class="jumbotron">
+  <table class="table" id="book-table">
+    <thead>
+      <tr>
+        <th>Attendees</th>
+      </tr>
+    </thead>
+<tbody>
+
+    {% for event in events %}
+    <tr>
+    <td>{{ event.username }}</td>
+  </tr>
+{% empty %}
+    <tr>
+          <td colspan="7" class="text-center bg-warning">No Attendees</td>
+        </tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+{% endblock %}

@@ -254,6 +254,15 @@ def my_events(request):
     my_events = Attending.objects.filter(username=username)
     return render(request,'events/my_events.html', {'my_events':my_events})
 
+
+@login_required(login_url='/login')
+def list_of_attendees(request,title):
+    username = request.user
+    events = Attending.objects.filter(title=title)
+    print(events)
+
+    return render(request,'events/list_of_attendees.html',{'events':events})
+
 @login_required(login_url='/login')
 def event_list(request):
 	username = request.user

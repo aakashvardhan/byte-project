@@ -27,6 +27,7 @@ urlpatterns = [
     path('dashboard/attend/<int:title_id>/',views.attendance,name='attendance'),
     path('dashboard/no_attend/<int:title_id>/',views.not_attending,name='not_attending'),
     path('dashboard/events_to_attend/',views.my_events,name='my_events'),
+    path('dashboard/events_to_attend/list_of_attendees/<title>/',views.list_of_attendees,name='attendees'),
 
 
 
